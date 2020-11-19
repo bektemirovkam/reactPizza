@@ -1,14 +1,22 @@
 import React from "react";
 import Button from "../Button";
 import classNames from "classnames";
-import { useDispatch, useSelector } from "react-redux";
-import { setPizzaToCart } from "../../redux/actions/cart";
+import { useSelector } from "react-redux";
+
+import { PropTypes } from "prop-types";
 
 const typesOfDough = ["Тонкое", "Традиционное"];
 const pizzaSizes = [26, 30, 40];
 
-const PizzaBlock = ({ imageUrl, name, prices, sizes, types, id }) => {
-  const dispatch = useDispatch();
+const PizzaBlock = ({
+  imageUrl,
+  name,
+  prices,
+  sizes,
+  types,
+  id,
+  addPizzaToCart,
+}) => {
   const [activeSize, setActiveSize] = React.useState(sizes[0]);
   const [activeTypeDough, setActiveDough] = React.useState(types[0]);
   const [price, setPrice] = React.useState(prices[0]);
@@ -16,8 +24,8 @@ const PizzaBlock = ({ imageUrl, name, prices, sizes, types, id }) => {
     cart.pizzasInCart[id] ? cart.pizzasInCart[id].count : false
   );
 
-  const addPizzaToCart = (pizza) => {
-    dispatch(setPizzaToCart(pizza));
+  const handleClickAdd = (pizza) => {
+    addPizzaToCart(pizza);
   };
 
   return (
@@ -73,7 +81,7 @@ const PizzaBlock = ({ imageUrl, name, prices, sizes, types, id }) => {
           <Button
             className="catalog__btn catalog-btn btn"
             onCkick={() => {
-              addPizzaToCart({
+              handleClickAdd({
                 imageUrl,
                 name,
                 price,
@@ -90,6 +98,21 @@ const PizzaBlock = ({ imageUrl, name, prices, sizes, types, id }) => {
       </div>
     </div>
   );
+};
+
+PizzaBlock.propType = {
+  imageUrl: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  prices: PropTypes.arrayOf(PropTypes.number).isRequired,
+  sizes: PropTypes.arrayOf(PropTypes.number),
+  types: PropTypes.arrayOf(PropTypes.number),
+  id: PropTypes.number.isRequired,
+  addPizzaToCart: PropTypes.func,
+};
+
+PizzaBlock.defaultProps = {
+  name: "Pizza",
+  types: [],
 };
 
 export default PizzaBlock;

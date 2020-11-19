@@ -2,6 +2,7 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import Button from "./../Button";
 import { deleteOneKind, minusItem, plusItem } from "./../../redux/actions/cart";
+import { PropTypes } from "prop-types";
 
 const typesOfDough = ["Тонкое", "Традиционное"];
 
@@ -60,6 +61,16 @@ const PizzaInCart = ({
       </div>
     </li>
   );
+};
+
+PizzaInCart.propTypes = {
+  imageUrl: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  activeTypeDough: PropTypes.string.isRequired,
+  activeSize: PropTypes.number.isRequired,
+  total: PropTypes.number.isRequired,
+  count: PropTypes.number.isRequired,
+  id: PropTypes.number.isRequired,
 };
 
 export default PizzaInCart;

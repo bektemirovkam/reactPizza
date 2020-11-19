@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Categories from "../components/Categories";
 import Sort from "../components/Sort";
 import { getPizzas } from "./../redux/actions/pizzas";
+import { setPizzaToCart } from "../redux/actions/cart";
 import PizzaBlock from "../components/Pizza/PizzaBlock";
 import PizzaLoader from "../components/Pizza/PizzaLoader";
 
@@ -30,6 +31,10 @@ const Home = () => {
     dispatch(getPizzas(category, sortBy, order));
   }, [category, sortBy]);
 
+  const addPizzaToCart = (pizza) => {
+    dispatch(setPizzaToCart(pizza));
+  };
+
   return (
     <>
       <div className="main__header">
@@ -42,7 +47,13 @@ const Home = () => {
       <div className="main__catalog catalog">
         {isLoaded
           ? pizzas.map((pizza) => {
-              return <PizzaBlock {...pizza} key={pizza.id} />;
+              return (
+                <PizzaBlock
+                  {...pizza}
+                  key={pizza.id}
+                  addPizzaToCart={addPizzaToCart}
+                />
+              );
             })
           : Array(10)
               .fill(0)

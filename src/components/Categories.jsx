@@ -2,6 +2,7 @@ import React from "react";
 import classNames from "classnames";
 import { useDispatch, useSelector } from "react-redux";
 import { setCategory } from "../redux/actions/filters";
+import PropTypes from "prop-types";
 
 const Categories = React.memo(({ availableCategores }) => {
   const currentCategory = useSelector(({ filters }) => filters.category);
@@ -37,5 +38,9 @@ const Categories = React.memo(({ availableCategores }) => {
     </ul>
   );
 });
+
+Categories.propType = {
+  availableCategores: PropTypes.arrayOf(PropTypes.string),
+};
 
 export default Categories;

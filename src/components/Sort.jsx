@@ -2,6 +2,7 @@ import React from "react";
 import classNames from "classnames";
 import { useDispatch, useSelector } from "react-redux";
 import { setSortBy } from "../redux/actions/filters";
+import { PropTypes } from "prop-types";
 
 const Sort = React.memo(({ availableSort }) => {
   const dispatch = useDispatch();
@@ -61,5 +62,9 @@ const Sort = React.memo(({ availableSort }) => {
     </div>
   );
 });
+
+Sort.propType = {
+  availableSort: PropTypes.arrayOf(PropTypes.object),
+};
 
 export default Sort;
