@@ -1,0 +1,25 @@
+const initailState = {
+  pizzas: [],
+  isLoaded: false,
+};
+
+const pizzas = (state = initailState, action) => {
+  switch (action.type) {
+    case "SET_PIZZAS": {
+      return {
+        ...state,
+        pizzas: action.payload,
+      };
+    }
+    case "SET_LOADED": {
+      return {
+        ...state,
+        isLoaded: action.payload,
+      };
+    }
+    default:
+      return state;
+  }
+};
+
+export default pizzas;

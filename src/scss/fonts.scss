@@ -1,0 +1,4 @@
+@include font("Proxima-Nova", "proximanova-black", "800", "normal");
+@include font("Proxima-Nova", "proximanova-bold", "700", "normal");
+@include font("Proxima-Nova", "proximanovacond-regular", "400", "normal");
+// если шрифты из одного семейства, но с разным весом, то имена оставляем одинаковые (в первых кавычках), а вес корректируем
